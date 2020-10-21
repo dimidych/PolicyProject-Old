@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C390C761-F104-407C-8EFB-66EA7C324A3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PolicyProjectManagementService</RootNamespace>
+    <AssemblyName>PolicyProjectManagementService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CryptoToolLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692cb4d6cc210515, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CryptoTool\CryptoToolLib.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Device\DeviceInfoDataContract.cs" />
+    <Compile Include="Device\DeviceService.cs" />
+    <Compile Include="Device\IDeviceService.cs" />
+    <Compile Include="EventLog\EventLogDataContract.cs" />
+    <Compile Include="EventLog\EventLogService.cs" />
+    <Compile Include="EventLog\IEventLogService.cs" />
+    <Compile Include="Event\EventDataContract.cs" />
+    <Compile Include="Event\EventService.cs" />
+    <Compile Include="Event\IEventService.cs" />
+    <Compile Include="Group\GroupDataContract.cs" />
+    <Compile Include="Group\GroupService.cs" />
+    <Compile Include="Group\IGroupService.cs" />
+    <Compile Include="LoginDevices\ILoginDevicesService.cs" />
+    <Compile Include="LoginDevices\LoginDevicesDataContract.cs" />
+    <Compile Include="LoginDevices\LoginDevicesService.cs" />
+    <Compile Include="Login\ILoginService.cs" />
+    <Compile Include="Login\LoginDataContract.cs" />
+    <Compile Include="Login\LoginService.cs" />
+    <Compile Include="Platform\IPlatformService.cs" />
+    <Compile Include="Platform\PlatformDataContract.cs" />
+    <Compile Include="Platform\PlatformService.cs" />
+    <Compile Include="PolicyProjectModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PolicyProjectModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolicyProjectModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolicyProjectModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PolicyProjectModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PolicySet\IPolicySetService.cs" />
+    <Compile Include="PolicySet\PolicySetDataContract.cs" />
+    <Compile Include="PolicySet\PolicySetService.cs" />
+    <Compile Include="Policy\IPolicyService.cs" />
+    <Compile Include="Policy\PolicyDataContract.cs" />
+    <Compile Include="Policy\PolicyService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="tbl_activity_log.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_device_info.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_event.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_group.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_login.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_login_devices.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_platform.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_policy.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_policy_set.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_user.cs">
+      <DependentUpon>PolicyProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User\IUserService.cs" />
+    <Compile Include="User\UserDataContract.cs" />
+    <Compile Include="User\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="PolicyProjectModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PolicyProjectModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="PolicyProjectModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PolicyProjectModel.edmx</DependentUpon>
+      <LastGenOutput>PolicyProjectModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="PolicyProjectModel.edmx.diagram">
+      <DependentUpon>PolicyProjectModel.edmx</DependentUpon>
+    </None>
+    <None Include="PolicyProjectModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PolicyProjectModel.edmx</DependentUpon>
+      <LastGenOutput>PolicyProjectModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JsonWorker\JsonWorker.csproj">
+      <Project>{fc1f122d-2207-4c20-9dd7-0ce6dcd922f7}</Project>
+      <Name>JsonWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceDefinitionInterface\ServiceDefinitionInterface.csproj">
+      <Project>{b8c7f8c2-5b2e-4f0e-8807-c3af54f164ce}</Project>
+      <Name>ServiceDefinitionInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceRealizationAtribute\ServiceRealizationAtribute.csproj">
+      <Project>{28b7a61a-d12e-4a4d-b51a-cb2503e39196}</Project>
+      <Name>ServiceRealizationAtribute</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

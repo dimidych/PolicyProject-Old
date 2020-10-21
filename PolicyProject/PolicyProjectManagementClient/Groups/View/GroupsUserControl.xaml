@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="PolicyProjectManagementClient.GroupsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="1050">
+    <DockPanel  LastChildFill="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <GroupBox Header="Действия над группами : " Margin="5,5,5,5" DockPanel.Dock="Top">
+            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True">
+                <Label Content="Наименование" VerticalAlignment="Center"  DockPanel.Dock="Left"/>
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button Content="Добавить" HorizontalAlignment="Right"
+                            Command="{Binding Path=AddGroupCmd}" Width="85" Height="24" 
+                            Background="{StaticResource Add}" Margin="2,2,2,2" Padding="1,1,5,1" 
+                            VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+                    <Button Content="Изменить" HorizontalAlignment="Right"
+                            Command="{Binding Path=UpdateGroupCmd}" Width="85" Height="24" 
+                            Background="{StaticResource Update}" Margin="2,2,2,2" Padding="1,1,5,1"  
+                            VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+                    <Button Content="Удалить" HorizontalAlignment="Right"
+                            Command="{Binding Path=DeleteGroupCmd}" Width="85" Height="24" 
+                            Background="{StaticResource Delete}" Margin="2,2,2,2" Padding="1,1,5,1"  
+                            VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+                </StackPanel>
+                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center" MinWidth="380"
+                         Margin="2,2,2,2" Text="{Binding Path=GroupName}" />
+            </DockPanel>
+        </GroupBox>
+        <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  Margin="5,5,5,5" MinHeight="100" MinWidth="760"
+                  AutoGenerateColumns="False" SelectionMode="Single"
+                  IsReadOnly="True" AlternatingRowBackground="Gainsboro"
+                  ItemsSource="{Binding Path=GroupCollection, Mode=TwoWay}"
+                  SelectedItem="{Binding Path=SelectedGroup, Mode=TwoWay}"
+                  UseLayoutRounding="True" IsTextSearchEnabled="True" CanUserReorderColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding GroupName}" Header="Наименование группы" MinWidth="250" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

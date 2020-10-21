@@ -1,0 +1,22 @@
+﻿<Application x:Class="PolicyProjectManagementClient.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:policyProjectManagementClient="clr-namespace:PolicyProjectManagementClient"
+             StartupUri="Start/View/StartWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <policyProjectManagementClient:ViewModelLocator x:Key="ViewModelLocator" />
+            <policyProjectManagementClient:FromBoolToVisibilityConverter x:Key="FromBoolToVisibleConverter"/>
+            <ImageBrush x:Key="Add" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/add_16x16.png" />
+            <ImageBrush x:Key="Apply" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/quarantine.png" />
+            <ImageBrush x:Key="Refresh" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/arrow_refresh.png" />
+            <ImageBrush x:Key="Delete" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/cancel.png" />
+            <ImageBrush x:Key="Delete1" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/delete.png" />
+            <ImageBrush x:Key="Update" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/pencil.png" />
+            <ImageBrush x:Key="Add1" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/accept.png" />
+            <ImageBrush x:Key="Info" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/statinfo.png" />
+            <ImageBrush x:Key="Search" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/magnifier.png" />
+            <ImageBrush x:Key="Funnel" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/funnel.png" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

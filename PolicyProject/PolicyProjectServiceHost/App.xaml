@@ -1,0 +1,10 @@
+﻿<Application x:Class="PolicyProjectServiceHost.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ImageBrush x:Key="Cancel" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/cancel.png" />
+        <ImageBrush x:Key="Start" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/emoticon_tongue.png" />
+        <ImageBrush x:Key="Help" TileMode="None" ViewportUnits="Absolute" Viewport="4 4 16 16" ImageSource="Pictures/help.png" />
+    </Application.Resources>
+</Application>

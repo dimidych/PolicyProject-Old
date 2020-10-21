@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="PolicyProjectManagementClient.PolicySetUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="1050">
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <GroupBox Header="Набор политик будет применяться к : " Margin="5,5,5,5" DockPanel.Dock="Top">
+            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" >
+                <Button Content="Сохранить" HorizontalAlignment="Right" DockPanel.Dock="Right"
+                                Command="{Binding Path=SavePolicySetCmd}" Width="90" Height="24" 
+                                Background="{StaticResource Add1}" Margin="5,5,5,5" Padding="1,1,5,1"  
+                                VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal" >
+                    <RadioButton Content="пользователям" Margin="2,2,2,2" HorizontalAlignment="Left"
+                                 IsChecked="{Binding Path=IsUserPolicySet}" VerticalAlignment="Center" />
+                    <RadioButton Content="группам пользователей" Margin="2,2,2,2" HorizontalAlignment="Left"
+                                 IsChecked="{Binding Path=IsGroupPolicySet}" VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140*"/>
+                <ColumnDefinition Width="219*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" 
+                      AutoGenerateColumns="False" SelectionMode="Single" AlternatingRowBackground="Gainsboro"
+                      IsReadOnly="True" MinHeight="100"  Grid.Column="0"
+                      Visibility="{Binding Path=IsUserPolicySet,Converter={StaticResource FromBoolToVisibleConverter}}"
+                      ItemsSource="{Binding Path=LoginCollection, Mode=TwoWay}"
+                      SelectedItem="{Binding Path=SelectedLogin, Mode=TwoWay}"
+                      UseLayoutRounding="True" IsTextSearchEnabled="True" CanUserReorderColumns="False"
+                      CanUserAddRows="False" CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding GroupName}" Header="Группа" MinWidth="100" />
+                    <DataGridTextColumn Binding="{Binding Login}" Header="Логин" MinWidth="100" />
+                    <DataGridTextColumn Binding="{Binding UserName}" Header="ФИО пользователя" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" 
+                      AutoGenerateColumns="False" SelectionMode="Single" AlternatingRowBackground="Gainsboro"
+                      IsReadOnly="True" MinHeight="100" Grid.Column="0" 
+                      Visibility="{Binding Path=IsGroupPolicySet,Converter={StaticResource FromBoolToVisibleConverter}}"
+                      ItemsSource="{Binding Path=GroupCollection, Mode=TwoWay}"
+                      SelectedItem="{Binding Path=SelectedGroup, Mode=TwoWay}"
+                      UseLayoutRounding="True" IsTextSearchEnabled="True" CanUserReorderColumns="False"
+                      CanUserAddRows="False" CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding GroupName}" Header="Наименование группы" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" 
+                  AutoGenerateColumns="False" SelectionMode="Single" MinWidth="500"
+                  Grid.Column="1" MinHeight="100" CanUserAddRows="False" CanUserDeleteRows="False"
+                  ItemsSource="{Binding Path=PolicyCollection, Mode=TwoWay}"
+                  UseLayoutRounding="True" IsTextSearchEnabled="True" CanUserReorderColumns="False">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsGroupPolitics}" Value="True">
+                                <Setter Property="Background" Value="PeachPuff"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding PlatformName}" Header="Платформа" MinWidth="70" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding PolicyName}" Header="Наименование политики" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding PolicyParam, Mode=TwoWay}" Header="Параметры политики" MinWidth="200" />
+                    <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay}" Header="Выбрать" MinWidth="60" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

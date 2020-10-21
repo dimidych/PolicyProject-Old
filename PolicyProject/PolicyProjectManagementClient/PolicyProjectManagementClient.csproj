@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76DC7313-36EA-4050-A528-14197929EA83}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PolicyProjectManagementClient</RootNamespace>
+    <AssemblyName>PolicyProjectManagementClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>137.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CryptoToolLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692cb4d6cc210515, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CryptoTool\CryptoToolLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Delegates.cs" />
+    <Compile Include="Device\Converter\FromPlatformIdToPlatformNameConverter.cs" />
+    <Compile Include="Device\ViewModel\DeviceViewModel.cs" />
+    <Compile Include="Device\View\DeviceUserControl.xaml.cs">
+      <DependentUpon>DeviceUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventLog\ViewModel\EventLogViewModel.cs" />
+    <Compile Include="EventLog\View\EventLogUserControl.xaml.cs">
+      <DependentUpon>EventLogUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Event\EventConstants.cs" />
+    <Compile Include="Event\ViewModel\EventViewModel.cs" />
+    <Compile Include="Event\View\EventUserControl.xaml.cs">
+      <DependentUpon>EventUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Groups\ViewModel\GroupsViewModel.cs" />
+    <Compile Include="Groups\View\GroupsUserControl.xaml.cs">
+      <DependentUpon>GroupsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hasher.cs" />
+    <Compile Include="IPpsClientViewModel.cs" />
+    <Compile Include="LoginDevices\Model\SelectedDevice.cs" />
+    <Compile Include="LoginDevices\ViewModel\LoginDevicesViewModel.cs" />
+    <Compile Include="LoginDevices\View\LoginDevicesUserControl.xaml.cs">
+      <DependentUpon>LoginDevicesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginEventArgs.cs" />
+    <Compile Include="Login\ViewModel\IPasswordContainer.cs" />
+    <Compile Include="Login\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Login\View\LoginUserControl.xaml.cs">
+      <DependentUpon>LoginUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PolicySet\Converter\FromBoolToVisibilityConverter.cs" />
+    <Compile Include="PolicySet\Model\SelectedPolicy.cs" />
+    <Compile Include="PolicySet\ViewModel\PolicySetViewModel.cs" />
+    <Compile Include="PolicySet\View\PolicySetUserControl.xaml.cs">
+      <DependentUpon>PolicySetUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Policy\ViewModel\PolicyViewModel.cs" />
+    <Compile Include="Policy\View\PolicyUserControl.xaml.cs">
+      <DependentUpon>PolicyUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PpsClientViewModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Start\ViewModel\StartViewModel.cs" />
+    <Compile Include="Start\View\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ViewModel\UsersViewModel.cs" />
+    <Compile Include="Users\View\UsersUserControl.xaml.cs">
+      <DependentUpon>UsersUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModelLocator.cs" />
+    <Page Include="Device\View\DeviceUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventLog\View\EventLogUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Event\View\EventUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Groups\View\GroupsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginDevices\View\LoginDevicesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\View\LoginUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PolicySet\View\PolicySetUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Policy\View\PolicyUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Start\View\StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Users\View\UsersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotifyHelper\NotifyHelper.csproj">
+      <Project>{2e564f7a-235f-4d2a-bf3e-a3b94b57ab90}</Project>
+      <Name>NotifyHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PolicyProjectManagementService\PolicyProjectManagementService.csproj">
+      <Project>{c390c761-f104-407c-8efb-66ea7c324a3a}</Project>
+      <Name>PolicyProjectManagementService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PpsClientChannelPool\PpsClientChannelProxy.csproj">
+      <Project>{0074ab79-cb98-4d20-b0af-bf488f318694}</Project>
+      <Name>PpsClientChannelProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RelayCommand\RelayCommand.csproj">
+      <Project>{5a2d6b10-b783-43b1-af7c-e481158e0aa8}</Project>
+      <Name>RelayCommand</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceDefinitionInterface\ServiceDefinitionInterface.csproj">
+      <Project>{b8c7f8c2-5b2e-4f0e-8807-c3af54f164ce}</Project>
+      <Name>ServiceDefinitionInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextBoxHelper\TextBoxHelper.csproj">
+      <Project>{23b8cc08-0562-4e4c-8e59-210f364961b9}</Project>
+      <Name>TextBoxHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="137.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\accept.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\add_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\arrow_refresh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\cancel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\pencil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\quarantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\delete.png" />
+    <Resource Include="Pictures\funnel.png" />
+    <Resource Include="Pictures\magnifier.png" />
+    <Resource Include="Pictures\statinfo.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

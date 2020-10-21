@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- EF Runtime content -->
+    <edmx:Runtime>
+        <!-- SSDL content -->
+        <edmx:StorageModels>
+        <Schema Namespace="PolicyProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_activity_log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="log_date" Type="datetime" Nullable="false" />
+          <Property Name="id_event" Type="int" Nullable="false" />
+          <Property Name="id_document" Type="bigint" />
+          <Property Name="message" Type="varchar(max)" />
+          <Property Name="device" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_device_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="device_name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="device_serial_number" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="device_ip_addr" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="device_mac_addr" Type="varchar" MaxLength="50" />
+          <Property Name="device_platform_id" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="event_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_group">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="group_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="pwd" Type="nvarchar(max)" />
+          <Property Name="certificate" Type="nvarchar(max)" />
+          <Property Name="id_user" Type="bigint" Nullable="false" />
+          <Property Name="id_group" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_login_devices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id_login" Type="bigint" Nullable="false" />
+          <Property Name="id_device" Type="bigint" Nullable="false" />
+          <Property Name="need_update_device" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_platform">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" Nullable="false" />
+          <Property Name="platform_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_policy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="policy_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="platform_id" Type="smallint" />
+          <Property Name="policy_instruction" Type="nvarchar(max)" />
+          <Property Name="policy_default_param" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_policy_set">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id_policy" Type="int" Nullable="false" />
+          <Property Name="id_login" Type="bigint" />
+          <Property Name="id_group" Type="int" />
+          <Property Name="selected" Type="bit" />
+          <Property Name="policy_param" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="middle_name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="PolicyProjectModelStoreContainer">
+          <EntitySet Name="tbl_activity_log" EntityType="Self.tbl_activity_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_device_info" EntityType="Self.tbl_device_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_event" EntityType="Self.tbl_event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_group" EntityType="Self.tbl_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_login" EntityType="Self.tbl_login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_login_devices" EntityType="Self.tbl_login_devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_platform" EntityType="Self.tbl_platform" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_policy" EntityType="Self.tbl_policy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_policy_set" EntityType="Self.tbl_policy_set" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+        <!-- CSDL content -->
+        <edmx:ConceptualModels>
+            <Schema Namespace="PolicyProjectModel" Alias="Self" p1:UseStrongSpatialTypes="false"
+                    xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+                    xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+                    xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+                <EntityContainer Name="PolicyProjectEntities" p1:LazyLoadingEnabled="true">
+                    <EntitySet Name="tbl_activity_log" EntityType="PolicyProjectModel.tbl_activity_log" />
+                    <EntitySet Name="tbl_event" EntityType="PolicyProjectModel.tbl_event" />
+                    <EntitySet Name="tbl_group" EntityType="PolicyProjectModel.tbl_group" />
+                    <EntitySet Name="tbl_login" EntityType="PolicyProjectModel.tbl_login" />
+                    <EntitySet Name="tbl_policy" EntityType="PolicyProjectModel.tbl_policy" />
+                    <EntitySet Name="tbl_policy_set" EntityType="PolicyProjectModel.tbl_policy_set" />
+                    <EntitySet Name="tbl_user" EntityType="PolicyProjectModel.tbl_user" />
+                    <EntitySet Name="tbl_device_info" EntityType="PolicyProjectModel.tbl_device_info" />
+                    <EntitySet Name="tbl_platform" EntityType="PolicyProjectModel.tbl_platform" />
+                    <EntitySet Name="tbl_login_devices" EntityType="PolicyProjectModel.tbl_login_devices" />
+                </EntityContainer>
+                <EntityType Name="tbl_activity_log">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int64" Nullable="false" />
+                    <Property Name="log_date" Type="DateTime" Nullable="false" Precision="3" />
+                    <Property Name="id_event" Type="Int32" Nullable="false" />
+                    <Property Name="id_document" Type="Int64" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="device" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+                </EntityType>
+                <EntityType Name="tbl_event">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int32" Nullable="false" />
+                    <Property Name="event_name" Type="String" Nullable="false" MaxLength="255" Unicode="true"
+                              FixedLength="false" />
+                </EntityType>
+                <EntityType Name="tbl_group">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int32" Nullable="false" />
+                    <Property Name="group_name" Type="String" Nullable="false" MaxLength="255" Unicode="true"
+                              FixedLength="false" />
+                </EntityType>
+                <EntityType Name="tbl_login">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int64" Nullable="false" />
+                    <Property Name="login" Type="String" Nullable="false" MaxLength="255" Unicode="true"
+                              FixedLength="false" />
+                    <Property Name="pwd" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+                    <Property Name="certificate" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+                    <Property Name="id_user" Type="Int64" Nullable="false" />
+                    <Property Type="Int32" Name="id_group" Nullable="false" />
+                </EntityType>
+                <EntityType Name="tbl_policy">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int32" Nullable="false" />
+                    <Property Name="policy_name" Type="String" Nullable="false" MaxLength="255" Unicode="true"
+                              FixedLength="false" />
+                    <Property Name="platform_id" Type="Int16" />
+                    <Property Name="policy_instruction" Type="String" MaxLength="Max" FixedLength="false"
+                              Unicode="true" />
+          <Property Name="policy_default_param" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                </EntityType>
+                <EntityType Name="tbl_policy_set">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int64" Nullable="false" />
+                    <Property Name="id_group" Type="Int32" />
+                    <Property Name="id_policy" Type="Int32" Nullable="false" />
+                    <Property Type="Int64" Name="id_login" />
+          <Property Name="selected" Type="Boolean" />
+          <Property Name="policy_param" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+                </EntityType>
+                <EntityType Name="tbl_user">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Type="Int64" Name="id" Nullable="false" />
+                    <Property Type="String" Name="first_name" Nullable="false" MaxLength="255" FixedLength="false"
+                              Unicode="true" />
+                    <Property Type="String" Name="last_name" MaxLength="255" FixedLength="false" Unicode="true" />
+                    <Property Type="String" Name="middle_name" MaxLength="255" FixedLength="false" Unicode="true" />
+                </EntityType>
+                <EntityType Name="tbl_device_info">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int64" Nullable="false" />
+                    <Property Name="device_name" Type="String" Nullable="false" MaxLength="250" FixedLength="false"
+                              Unicode="false" />
+                    <Property Name="device_serial_number" Type="String" Nullable="false" MaxLength="250"
+                              FixedLength="false" Unicode="false" />
+                    <Property Name="device_ip_addr" Type="String" Nullable="false" MaxLength="15" FixedLength="false"
+                              Unicode="false" />
+                    <Property Name="device_mac_addr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+                    <Property Name="device_platform_id" Type="Int16" Nullable="false" />
+                </EntityType>
+                <EntityType Name="tbl_platform">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int16" Nullable="false" />
+                    <Property Name="platform_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false"
+                              Unicode="true" />
+                </EntityType>
+                <EntityType Name="tbl_login_devices">
+                    <Key>
+                        <PropertyRef Name="id" />
+                    </Key>
+                    <Property Name="id" Type="Int64" Nullable="false" />
+                    <Property Name="id_login" Type="Int64" Nullable="false" />
+                    <Property Name="id_device" Type="Int64" Nullable="false" />
+          <Property Name="need_update_device" Type="Boolean" />
+                </EntityType>
+            </Schema>
+        </edmx:ConceptualModels>
+        <!-- C-S mapping content -->
+        <edmx:Mappings>
+            <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+                <EntityContainerMapping StorageEntityContainer="PolicyProjectModelStoreContainer"
+                                        CdmEntityContainer="PolicyProjectEntities">
+                    <EntitySetMapping Name="tbl_activity_log">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_activity_log">
+                            <MappingFragment StoreEntitySet="tbl_activity_log">
+                                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="device" ColumnName="device" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                                <ScalarProperty Name="log_date" ColumnName="log_date" />
+                                <ScalarProperty Name="id_event" ColumnName="id_event" />
+                                <ScalarProperty Name="id_document" ColumnName="id_document" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_event">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_event">
+                            <MappingFragment StoreEntitySet="tbl_event">
+                                <ScalarProperty Name="id" ColumnName="id" />
+                                <ScalarProperty Name="event_name" ColumnName="event_name" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_group">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_group">
+                            <MappingFragment StoreEntitySet="tbl_group">
+                                <ScalarProperty Name="id" ColumnName="id" />
+                                <ScalarProperty Name="group_name" ColumnName="group_name" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_login">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_login">
+                            <MappingFragment StoreEntitySet="tbl_login">
+                                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                                <ScalarProperty Name="login" ColumnName="login" />
+                                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                                <ScalarProperty Name="certificate" ColumnName="certificate" />
+                                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_policy">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_policy">
+                            <MappingFragment StoreEntitySet="tbl_policy">
+                <ScalarProperty Name="policy_instruction" ColumnName="policy_instruction" />
+                <ScalarProperty Name="policy_default_param" ColumnName="policy_default_param" />
+                <ScalarProperty Name="platform_id" ColumnName="platform_id" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                                <ScalarProperty Name="policy_name" ColumnName="policy_name" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_policy_set">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_policy_set">
+                            <MappingFragment StoreEntitySet="tbl_policy_set">
+                <ScalarProperty Name="policy_param" ColumnName="policy_param" />
+                <ScalarProperty Name="selected" ColumnName="selected" />
+                <ScalarProperty Name="id_login" ColumnName="id_login" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                                <ScalarProperty Name="id_policy" ColumnName="id_policy" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_user">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_user">
+                            <MappingFragment StoreEntitySet="tbl_user">
+                                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_device_info">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_device_info">
+                            <MappingFragment StoreEntitySet="tbl_device_info">
+                                <ScalarProperty Name="device_platform_id" ColumnName="device_platform_id" />
+                                <ScalarProperty Name="device_mac_addr" ColumnName="device_mac_addr" />
+                                <ScalarProperty Name="device_ip_addr" ColumnName="device_ip_addr" />
+                                <ScalarProperty Name="device_serial_number" ColumnName="device_serial_number" />
+                                <ScalarProperty Name="device_name" ColumnName="device_name" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_platform">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_platform">
+                            <MappingFragment StoreEntitySet="tbl_platform">
+                                <ScalarProperty Name="platform_name" ColumnName="platform_name" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                    <EntitySetMapping Name="tbl_login_devices">
+                        <EntityTypeMapping TypeName="PolicyProjectModel.tbl_login_devices">
+                            <MappingFragment StoreEntitySet="tbl_login_devices">
+                                <ScalarProperty Name="need_update_device" ColumnName="need_update_device" />
+                <ScalarProperty Name="id_device" ColumnName="id_device" />
+                                <ScalarProperty Name="id_login" ColumnName="id_login" />
+                                <ScalarProperty Name="id" ColumnName="id" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
+                </EntityContainerMapping>
+            </Mapping>
+        </edmx:Mappings>
+    </edmx:Runtime>
+    <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+    <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+        <Connection>
+            <DesignerInfoPropertySet>
+                <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+            </DesignerInfoPropertySet>
+        </Connection>
+        <Options>
+            <DesignerInfoPropertySet>
+                <DesignerProperty Name="ValidateOnBuild" Value="true" />
+                <DesignerProperty Name="EnablePluralization" Value="True" />
+                <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+                <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+                <DesignerProperty Name="UseLegacyProvider" Value="True" />
+            </DesignerInfoPropertySet>
+        </Options>
+        <!-- Diagram content (shape and connector positions) -->
+        <Diagrams></Diagrams>
+    </Designer>
+</edmx:Edmx>

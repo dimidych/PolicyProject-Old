@@ -1,0 +1,45 @@
+﻿<Window x:Class="PolicyProjectServiceHost.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:textBoxHelper="clr-namespace:TextBoxHelper;assembly=TextBoxHelper"
+        Title="{Binding Path=Status}" Height="300" Width="681" WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="CenterScreen" UseLayoutRounding="True" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/PresentationFramework.Royale;V3.0.0.0;31bf3856ad364e35;component\themes\royale.normalcolor.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <WrapPanel Orientation="Vertical" HorizontalAlignment="Stretch" UseLayoutRounding="True">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2,2,2,2" Width="664">
+            <Button Content="Запустить сервис" Command="{Binding Path=StartPpsHostCmd}"
+                    HorizontalAlignment="Left" Height="24" Width="205" Margin="8,8,8,8"
+                    Background="{StaticResource Start}" IsEnabled="{Binding Path=CanStart}"
+                    VerticalAlignment="Top" UseLayoutRounding="True" />
+            <Button Content="Состояние сервисов в пуле" Command="{Binding Path=CheckServiceStatusCmd}"
+                    HorizontalAlignment="Center" Margin="8,8,8,8" VerticalAlignment="Top"
+                    Background="{StaticResource Help}"
+                    Width="205" Height="24" UseLayoutRounding="True" />
+            <Button Content="Остановить сервис" Command="{Binding Path=StopPpsHostCmd}"
+                    HorizontalAlignment="Right" Margin="8,8,8,8" VerticalAlignment="Top"
+                    Background="{StaticResource Cancel}" IsEnabled="{Binding Path=CanStop}"
+                    Width="205" Height="24" UseLayoutRounding="True" />
+        </WrapPanel>
+        <GroupBox Header="Вывод" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2"
+                  Height="209">
+         <TextBox HorizontalAlignment="Stretch" Text="{Binding Path=LogMessage}" VerticalAlignment="Stretch"
+                     Margin="2,2,2,2"
+                     TextWrapping="Wrap" ScrollViewer.CanContentScroll="True" MinWidth="150" MinHeight="100"
+                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                     textBoxHelper:TextBoxHelper.ScrollOnTextChanged="True" IsReadOnly="True">
+            <TextBox.ContextMenu>
+               <ContextMenu>
+                  <MenuItem Header="Очистить лог" Command="{Binding Path=ClearLogCmd}" />
+               </ContextMenu>
+            </TextBox.ContextMenu>
+         </TextBox>
+      </GroupBox>
+   </WrapPanel>
+</Window>

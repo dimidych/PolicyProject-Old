@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="PolicyProjectManagementClient.DeviceUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="1050">
+    <DockPanel  LastChildFill="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <GroupBox Header="Действия над устройствами : " Margin="5,5,5,5" DockPanel.Dock="Top">
+            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True">
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button Content="Добавить" HorizontalAlignment="Right"
+                            Command="{Binding Path=AddDeviceCmd}" Width="85" Height="24" 
+                            Background="{StaticResource Add}" Margin="2,2,2,2" Padding="1,1,5,1"  
+                            VerticalAlignment="Bottom" HorizontalContentAlignment="Right" />
+                    <Button Content="Изменить" HorizontalAlignment="Right"
+                            Command="{Binding Path=UpdateDeviceCmd}" Width="85" Height="24" 
+                            Background="{StaticResource Update}" Margin="2,2,2,2" Padding="1,1,5,1"  
+                            VerticalAlignment="Bottom" HorizontalContentAlignment="Right" />
+                    <Button Content="Удалить" HorizontalAlignment="Right"
+                            Command="{Binding Path=DeleteDeviceCmd}" Width="85" Height="24" 
+                            Background="{StaticResource Delete}" Margin="2,2,2,2" Padding="1,1,5,1"  
+                            VerticalAlignment="Bottom" HorizontalContentAlignment="Right" />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            Orientation="Horizontal">
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Наименование" Grid.Row="0" />
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Grid.Row="1"
+                                 Margin="2,2,2,2" Text="{Binding Path=DeviceName}" />
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Серийный номер" Grid.Row="0" />
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Grid.Row="1"
+                                 Margin="2,2,2,2" Text="{Binding Path=DeviceSerialNumber}" />
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="IP адрес" Grid.Row="0" />
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Grid.Row="1"
+                                 Margin="2,2,2,2" Text="{Binding Path=DeviceIpAddress}" />
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="MAC адрес" Grid.Row="0" />
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Grid.Row="1"
+                                 Margin="2,2,2,2" Text="{Binding Path=DeviceMacAddress}" />
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Платформа" Grid.Row="0" />
+                        <ComboBox x:Name="CmbPlatform" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"
+                                  Grid.Row="1"
+                                  Margin="2,2,2,2" ItemsSource="{Binding Path=PlatformCollection, Mode=TwoWay}"
+                                  SelectedItem="{Binding Path=SelectedPlatform}" DisplayMemberPath="PlatformName" />
+                    </Grid>
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+        <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  Margin="5,5,5,5" MinHeight="100" MinWidth="760"
+                  AutoGenerateColumns="False" SelectionMode="Single"
+                  IsReadOnly="True"  AlternatingRowBackground="Gainsboro"
+                  ItemsSource="{Binding Path=DeviceCollection, Mode=TwoWay}"
+                  SelectedItem="{Binding Path=SelectedDevice, Mode=TwoWay}"
+                  UseLayoutRounding="True" IsTextSearchEnabled="True" CanUserReorderColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding DeviceName}" Header="Наименование" MinWidth="200" />
+                <DataGridTextColumn Binding="{Binding DeviceSerialNumber}" Header="Серийный номер" MinWidth="200" />
+                <DataGridTextColumn Binding="{Binding DeviceIpAddress}" Header="IP адрес" MinWidth="150" />
+                <DataGridTextColumn Binding="{Binding DeviceMacAddress}" Header="MAC адрес" MinWidth="150" />
+                <DataGridTextColumn Binding="{Binding DevicePlatformName}" Header="Платформа" MinWidth="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="PolicyProjectManagementClient.LoginUserControl" x:Name="LoginUc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="1050">
+    <DockPanel  LastChildFill="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <GroupBox Header="Действия над логином : " Margin="5,5,5,5" DockPanel.Dock="Top">
+            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True">
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Stretch" 
+                            Orientation="Horizontal"  DockPanel.Dock="Right" >
+                    <Button x:Name="BtnAddLogin" Content="Добавить" HorizontalAlignment="Right"
+                            Command="{Binding Path=AddLoginCmd}" 
+                            CommandParameter="{Binding ElementName=LoginUc}" 
+                            Width="85" Height="24" 
+                            Background="{StaticResource Add}" Margin="2,2,2,2" Padding="1,1,5,1"  
+                            VerticalAlignment="Bottom" HorizontalContentAlignment="Right" Click="BtnAddLogin_Click" />
+                    <Button x:Name="BtnUpdateLogin" Content="Изменить" HorizontalAlignment="Right"
+                            Command="{Binding Path=UpdateLoginCmd}" 
+                            CommandParameter="{Binding ElementName=LoginUc}"
+                            Width="85" Height="24" 
+                            Background="{StaticResource Update}" Margin="2,2,2,2" Padding="1,1,5,1" 
+                            VerticalAlignment="Bottom" HorizontalContentAlignment="Right" Click="BtnUpdateLogin_Click" />
+                    <Button Content="Удалить" HorizontalAlignment="Right"
+                            Command="{Binding Path=DeleteLoginCmd}" Width="85" Height="24" 
+                            Background="{StaticResource Delete}" Margin="2,2,2,2" Padding="1,1,5,1"
+                            VerticalAlignment="Bottom" HorizontalContentAlignment="Right" />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            Orientation="Horizontal">
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Логин" Grid.Row="0" />
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" 
+                             Width="130" Grid.Row="1" Margin="5,2,2,2" Text="{Binding Path=Login}" />
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Пароль" Grid.Row="0" />
+                        <PasswordBox x:Name="PwdBox" HorizontalAlignment="Left" Margin="2,2,2,2" MinWidth="120" 
+                             VerticalAlignment="Center" Grid.Row="1"/>
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Повторить пароль" Grid.Row="0" />
+                        <PasswordBox x:Name="ElsePwdBox" HorizontalAlignment="Left" Margin="2,2,2,2" MinWidth="120" 
+                             VerticalAlignment="Center" Grid.Row="1"/>
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Пользователь" Grid.Row="0" />
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="235" Grid.Row="1"
+                             Margin="2,2,2,2" ItemsSource="{Binding Path=UserCollection, Mode=TwoWay}" 
+                             SelectedItem="{Binding Path=SelectedUser}" DisplayMemberPath="UserName"/>
+                    </Grid>
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label Content="Группа" Grid.Row="0" />
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Grid.Row="1"
+                             Margin="2,2,2,2" ItemsSource="{Binding Path=GroupCollection, Mode=TwoWay}" 
+                             SelectedItem="{Binding Path=SelectedGroup}" DisplayMemberPath="GroupName"/>
+                    </Grid>
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+        <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  Margin="5,5,5,5" MinHeight="100" MinWidth="760"
+                  AutoGenerateColumns="False" SelectionMode="Single"
+                  IsReadOnly="True" AlternatingRowBackground="Gainsboro"
+                  ItemsSource="{Binding Path=LoginCollection, Mode=TwoWay}"
+                  SelectedItem="{Binding Path=SelectedLogin, Mode=TwoWay}"
+                  UseLayoutRounding="True" IsTextSearchEnabled="True" CanUserReorderColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Login}" Header="Логин " MinWidth="200" />
+                <DataGridTextColumn Binding="{Binding UserName}" Header="Имя пользователя" MinWidth="200" />
+                <DataGridTextColumn Binding="{Binding GroupName}" Header="Группа" MinWidth="200" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>
